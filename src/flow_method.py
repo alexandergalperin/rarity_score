@@ -22,6 +22,12 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
     rarity_score_flow = inward_flow_results
     min_score = np.min(rarity_score_flow)
     max_score = np.max(rarity_score_flow)
-    rarity_score_flow = (rarity_score_flow - min_score) / (max_score - min_score)
+
+    # Check if max_score equals min_score to prevent division by zero
+    if max_score == min_score:
+        # If all scores are the same, rarity scores should be 0
+        rarity_score_flow = [0 for _ in rarity_score_flow]
+    else:
+        rarity_score_flow = [(score - min_score) / (max_score - min_score) for score in rarity_score_flow]
     
     return rarity_score_flow
