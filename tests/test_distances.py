@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from mean_method import calculate_rarity_scores
-from flow_method import calculate_rarity_scores
+from flow_method import calculate_rarity_scores_flow
 
 @pytest.fixture
 def euclidean_distances():
