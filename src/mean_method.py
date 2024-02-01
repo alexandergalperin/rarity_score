@@ -12,8 +12,8 @@ def calculate_rarity_scores(distances, n_neighbours):
 
     # Check if max_score equals min_score to prevent division by zero
     if max_score == min_score:
-        # If all scores are the same, rarity scores should be 0 or another constant value
-        rarity_score = [0 for _ in averages]  # Here, we choose 0 but you might choose another logic
+        # If all scores are the same, rarity scores should be 0
+        rarity_score = [0 for _ in averages]
     else:
         rarity_score = [(average - min_score) / (max_score - min_score) for average in averages]
     
