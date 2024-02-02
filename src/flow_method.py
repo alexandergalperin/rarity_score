@@ -1,5 +1,4 @@
 import numpy as np
-from tqdm import tqdm
 
 def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
     # Ensure distances is a numpy array for consistent processing
@@ -14,7 +13,7 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
 
     # Iterative flow search
     inward_flow_results = np.zeros(len(distances))
-    for id in tqdm(range(len(distances)), disable=True):  # disable tqdm in tests
+    for id in range(len(distances)):
         idx = sorted_ids[id][1:(n_next_hubs + 1)]
         inward_flow_results[id] += compute_flows(distances[id, idx]).sum()
 
