@@ -10,7 +10,7 @@ In der heutigen Zeit der massiven Datenmengen ist die Identifizierung seltener u
 Stellen Sie sicher, dass Python installiert ist und installieren Sie dann die benötigten Bibliotheken:
 
 ```bash
-pip install numpy tqdm
+pip install numpy
 ```
 
 ## Verwendung
