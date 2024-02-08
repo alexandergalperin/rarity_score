@@ -18,7 +18,6 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
 
     for distance_array in distances:
         for distance_number in distance_array:
-            print("PRINT:::: ", distance_number)
             if not isinstance(distance_number, (int,float, np.number)):
                 raise TypeError("Distances must be numeric NumPy arrays")
 
