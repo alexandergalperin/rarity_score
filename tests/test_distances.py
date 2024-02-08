@@ -40,13 +40,13 @@ def test_rarity_scores_with_manhattan_flow_method(manhattan_distances):
 def test_non_numeric_distances_mean_method():
     distances = np.array([["a", "b"], ["c", "d"]])
     n_neighbours = 2
-    with pytest.raises(TypeError, match="Distances must be numeric"):
+    with pytest.raises(TypeError, match="Distances must be numeric NumPy arrays"):
         calculate_rarity_scores([distances], n_neighbours)
 
 def test_non_numeric_distances_flow_method():
     distances = np.array([["a", "b"], ["c", "d"]])
     n_next_hubs = 2
-    with pytest.raises(TypeError, match="Distances must be numeric"):
+    with pytest.raises(TypeError, match="Distances must be numeric NumPy arrays"):
         calculate_rarity_scores_flow([distances], n_next_hubs)
 
 
