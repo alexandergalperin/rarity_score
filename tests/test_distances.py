@@ -40,41 +40,41 @@ def test_non_numeric_distances_flow_method():
 
 
 def test_empty_distances_mean_method():
-    n_neighbours = 5
+    n_neighbours = 3
     with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
         calculate_rarity_scores([], n_neighbours)
 
 def test_empty_distances_flow_method():
-    n_next_hubs = 5
+    n_next_hubs = 3
     with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
         calculate_rarity_scores_flow([], n_next_hubs)
 
 def test_rarity_scores_with_euclidean(euclidean_distances):
-    n_neighbours = 5
+    n_neighbours = 3
     rarity_scores = calculate_rarity_scores(euclidean_distances, n_neighbours)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
 def test_rarity_scores_with_cosine(cosine_distances):
-    n_neighbours = 5
+    n_neighbours = 3
     rarity_scores = calculate_rarity_scores(cosine_distances, n_neighbours)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
 def test_rarity_scores_flow_with_euclidean(euclidean_distances):
-    n_next_hubs = 5
+    n_next_hubs = 3
     rarity_scores = calculate_rarity_scores(euclidean_distances, n_next_hubs)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
 def test_rarity_scores_flow_with_cosine(cosine_distances):
-    n_next_hubs = 5
+    n_next_hubs = 3
     rarity_scores = calculate_rarity_scores(cosine_distances, n_next_hubs)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
 def test_rarity_scores_with_manhattan_mean_method(manhattan_distances):
-    n_neighbours = 5
+    n_neighbours = 3
     rarity_scores = calculate_rarity_scores(manhattan_distances, n_neighbours)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
 def test_rarity_scores_with_manhattan_flow_method(manhattan_distances):
-    n_next_hubs = 5
+    n_next_hubs = 3
     rarity_scores = calculate_rarity_scores_flow(manhattan_distances, n_next_hubs)
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
