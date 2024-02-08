@@ -13,7 +13,7 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
         NumPy array with rarity scores (shape: (n_samples,)).
     """
 
-    if not distances:
+    if len(distances) == 0:
         raise ValueError("Cannot calculate rarity scores with empty distances")
 
     for distance_array in distances:
