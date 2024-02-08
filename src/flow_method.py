@@ -14,7 +14,7 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
     """
     distances = np.array(distances)
 
-    if not distances:
+    if not distances.all():
         raise ValueError("Cannot calculate rarity scores with empty distances")
 
     for distance_array in distances:
