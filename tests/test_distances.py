@@ -25,16 +25,16 @@ def manhattan_distances():
     dist_matrix = np.abs(data[:, np.newaxis, :] - data[np.newaxis, :, :]).sum(axis=2)
     return dist_matrix
 
-def test_rarity_scores_with_manhattan_mean_method():
-    distances = manhattan_distances()  # Generate the distance matrix
+def test_rarity_scores_with_manhattan_mean_method(manhattan_distances):
+    distances = manhattan_distances  # Using the fixture
     n_neighbours = 5
     rarity_scores = calculate_rarity_scores([distances], n_neighbours)
     assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
     assert 0 <= min(rarity_scores) <= 1, "Rarity-Scores sollten zwischen 0 und 1 normiert sein"
 
 
-def test_rarity_scores_with_manhattan_mean_method():
-    distances = manhattan_distances()  # Generate the distance matrix
+def test_rarity_scores_with_manhattan_mean_method(manhattan_distances):
+    distances = manhattan_distances  # Generate the distance matrix
     n_next_hubs = 5
     rarity_scores = calculate_rarity_scores([distances], n_next_hubs)
     assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
@@ -64,28 +64,28 @@ def test_empty_distances_flow_method():
     with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
         calculate_rarity_scores_flow([], n_next_hubs)
 
-def test_rarity_scores_with_euclidean():
-    distances = euclidean_distances()
+def test_rarity_scores_with_euclidean(euclidean_distances):
+    distances = euclidean_distances
     n_neighbours = 5
     rarity_scores = calculate_rarity_scores([distances], n_neighbours)
     assert len(rarity_scores) == 1, "There should be one rarity score array"
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
-def test_rarity_scores_with_cosine():
+def test_rarity_scores_with_cosine(cosine_distances):
     distances = cosine_distances
     n_neighbours = 5
     rarity_scores = calculate_rarity_scores([distances], n_neighbours)
     assert len(rarity_scores) == 1, "There should be one rarity score array"
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
-def test_rarity_scores_flow_with_euclidean():
-    distances = euclidean_distances()
+def test_rarity_scores_flow_with_euclidean(euclidean_distances):
+    distances = euclidean_distances
     n_next_hubs = 5
     rarity_scores = calculate_rarity_scores([distances], n_next_hubs)
     assert len(rarity_scores) == 1, "There should be one rarity score array"
     assert 0 <= min(rarity_scores) <= 1, "Rarity scores should be normalized between 0 and 1"
 
-def test_rarity_scores_flow_with_cosine():
+def test_rarity_scores_flow_with_cosine(cosine_distances):
     distances = cosine_distances
     n_next_hubs = 5
     rarity_scores = calculate_rarity_scores([cosine_distances], n_next_hubs)
