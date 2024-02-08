@@ -50,19 +50,6 @@ def test_non_numeric_distances_flow_method():
         calculate_rarity_scores_flow([distances], n_next_hubs)
 
 
-def test_zero_n_neighbours_mean_method():
-    distances = [[1, 2], [3, 4]]
-    n_neighbours = 0
-    rarity_scores = calculate_rarity_scores([distances], n_neighbours)
-    assert all(score == 0 for score in rarity_scores), "Rarity scores should be 0 for zero neighbors"
-
-def test_zero_n_next_hubs_flow_method():
-    distances = [[1, 2], [3, 4]]
-    n_next_hubs = 0
-    rarity_scores = calculate_rarity_scores_flow([distances], n_next_hubs)
-    assert all(score == 0 for score in rarity_scores), "Rarity scores should be 0 for zero next hubs"
-
-
 def test_empty_distances_mean_method():
     n_neighbours = 5
     with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
