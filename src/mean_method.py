@@ -39,6 +39,3 @@ def calculate_rarity_scores(distances, n_neighbours):
         rarity_score = [(average - min_score) / (max_score - min_score) for average in averages]
 
     return rarity_score
-
-
-
