@@ -21,12 +21,12 @@ def cosine_distances():
 
 def test_empty_distances_mean_method():
     n_neighbours = 5
-    with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances list"):
+    with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
         calculate_rarity_scores([], n_neighbours)
 
 def test_empty_distances_flow_method():
     n_next_hubs = 5
-    with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances array"):
+    with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
         calculate_rarity_scores_flow([], n_next_hubs)
 
 def test_rarity_scores_with_euclidean(euclidean_distances):

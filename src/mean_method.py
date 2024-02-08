@@ -1,12 +1,12 @@
 import numpy as np
 
 def calculate_rarity_scores(distances, n_neighbours):
+    if not distances:
+        raise ValueError("Cannot calculate rarity scores with empty distances")
+        
     # Ensure distances is a numpy array for consistent processing
     distances = [np.array(distance_array) for distance_array in distances]
 
-    if not distances:
-        raise ValueError("Cannot calculate rarity scores with empty distances list")
-    
     sorted_distances = [np.sort(distance_array)[:n_neighbours] for distance_array in distances]
 
     averages = [np.mean(score_array) for score_array in sorted_distances]
