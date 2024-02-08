@@ -21,7 +21,7 @@ def cosine_distances():
 @pytest.fixture
 def manhattan_distances():
     # Generiere eine Beispiel-Distanzmatrix mit Manhattan-Distanz
-    data = np.random.randint(1, 10, size=(10, 2))
+    data = np.array(np.random.randint(1, 10, size=(10, 2)))
     dist_matrix = np.abs(data[:, np.newaxis, :] - data[np.newaxis, :, :]).sum(axis=2)
     return dist_matrix
 

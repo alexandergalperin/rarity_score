@@ -18,7 +18,7 @@ def calculate_rarity_scores(distances, n_neighbours):
 
     for distance_array in distances:
         for distance_number in distance_array:
-            if not isinstance(distance_number, (int, float, np.number)):
+            if not isinstance(distance_number, (int,float, np.number)):
                 raise TypeError("Distances must be numeric NumPy arrays")
 
     if n_neighbours > len(distances[0]):
@@ -39,4 +39,6 @@ def calculate_rarity_scores(distances, n_neighbours):
         rarity_score = [(average - min_score) / (max_score - min_score) for average in averages]
 
     return rarity_score
+
+
 
