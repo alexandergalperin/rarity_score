@@ -1,6 +1,9 @@
 import numpy as np
 
 def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
+    if not distances:
+        raise ValueError("Cannot calculate rarity scores with empty distances list")
+
     # Ensure distances is a numpy array for consistent processing
     distances = np.array(distances)
     
