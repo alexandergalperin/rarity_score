@@ -6,14 +6,14 @@ from flow_method import calculate_rarity_scores_flow
 @pytest.fixture 
 def euclidean_distances():
     # Generate a sample distance matrix using Euclidean distance with guaranteed variance
-    data = np.array([[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]])
+    data = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]]
     dist_matrix = np.sqrt(((data[:, np.newaxis, :] - data[np.newaxis, :, :]) ** 2).sum(axis=2))
     return dist_matrix
 
 @pytest.fixture
 def cosine_distances():
     # Generate a sample distance matrix using cosine distance with guaranteed variance
-    data = np.array([[1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, 1], [1, -1], [-1, -1], [2, 0], [0, 2]])
+    data = [[1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, 1], [1, -1], [-1, -1], [2, 0], [0, 2]]
     norm_data = data / np.linalg.norm(data, axis=1, keepdims=True)
     dist_matrix = 1 - np.dot(norm_data, norm_data.T)
     return dist_matrix
@@ -21,7 +21,7 @@ def cosine_distances():
 @pytest.fixture
 def manhattan_distances():
     # Generiere eine Beispiel-Distanzmatrix mit Manhattan-Distanz
-    data = np.array(np.random.randint(1, 10, size=(10, 2)))
+    data = [np.random.randint(1, 10, size=(10, 2))]
     dist_matrix = np.abs(data[:, np.newaxis, :] - data[np.newaxis, :, :]).sum(axis=2)
     return dist_matrix
 
