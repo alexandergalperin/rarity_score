@@ -1,15 +1,15 @@
-import numpy as np
+import numpy as np 
 
 def calculate_rarity_scores(distances, n_neighbours):
     """
-    Berechnet Rarity-Scores basierend auf Entfernungen und der Anzahl der Nachbarn.
+    Calculates rarity scores based on distances and the number of neighbors.
 
     Args:
-        distances: Liste von Distanzmatrizen (Numpy-Arrays).
-        n_neighbours: Anzahl der Nachbarn zur Berücksichtigung.
+        distances: List of distance matrices (NumPy arrays).
+        n_neighbours: Number of neighbors to consider.
 
     Returns:
-        Liste von Rarity-Scores (Numpy-Arrays).
+        List of rarity scores (NumPy arrays).
     """
 
     if not distances:
@@ -19,7 +19,7 @@ def calculate_rarity_scores(distances, n_neighbours):
 
     for distance_array in distances:
         if not isinstance(distance_array, np.ndarray):
-            raise TypeError("Distances must be numeric")
+            raise TypeError("Distances must be numeric NumPy arrays")
 
     if n_neighbours > len(distances[0]):
         raise ValueError("n_neighbours cannot be greater than the number of distances")
