@@ -39,8 +39,8 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
 
     # Normalization and transformation
     rarity_score_flow = inward_flow_results
-    min_score = np.min(rarity_score_flow)
-    max_score = np.max(rarity_score_flow)
+    min_score = min(rarity_score_flow)
+    max_score = max(rarity_score_flow)
 
     # Check if max_score equals min_score to prevent division by zero
     if max_score == min_score:
