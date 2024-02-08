@@ -50,7 +50,3 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
         rarity_score_flow = [(score - min_score) / (max_score - min_score) for score in rarity_score_flow]
 
     return rarity_score_flow
-
-data = np.array(np.random.randint(1, 10, size=(10, 2)))
-dist_matrix = np.abs(data[:, np.newaxis, :] - data[np.newaxis, :, :]).sum(axis=2)
-print(calculate_rarity_scores_flow(dist_matrix,2))
