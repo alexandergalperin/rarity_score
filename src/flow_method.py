@@ -16,7 +16,7 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
     if not distances:
         raise ValueError("Cannot calculate rarity scores with empty distances")
 
-    if not np.all(np.issubdtype(distances, np.number)):
+    if not isinstance(distances, np.ndarray):
         raise TypeError("Distances must be numeric NumPy arrays")
 
     if n_next_hubs > len(distances):
