@@ -1,11 +1,28 @@
 import numpy as np
 
 def calculate_rarity_scores(distances, n_neighbours):
+    """
+    Berechnet Rarity-Scores basierend auf Entfernungen und der Anzahl der Nachbarn.
+
+    Args:
+        distances: Liste von Distanzmatrizen (Numpy-Arrays).
+        n_neighbours: Anzahl der Nachbarn zur Berücksichtigung.
+
+    Returns:
+        Liste von Rarity-Scores (Numpy-Arrays).
+    """
+
     if not distances:
         raise ValueError("Cannot calculate rarity scores with empty distances")
-        
-    # Ensure distances is a numpy array for consistent processing
+
     distances = [np.array(distance_array) for distance_array in distances]
+
+    for distance_array in distances:
+        if not isinstance(distance_array, np.ndarray):
+            raise TypeError("Distances must be numeric")
+
+    if n_neighbours > len(distances[0]):
+        raise ValueError("n_neighbours cannot be greater than the number of distances")
 
     sorted_distances = [np.sort(distance_array)[:n_neighbours] for distance_array in distances]
 
@@ -20,6 +37,5 @@ def calculate_rarity_scores(distances, n_neighbours):
         rarity_score = [0 for _ in averages]
     else:
         rarity_score = [(average - min_score) / (max_score - min_score) for average in averages]
-    
-    return rarity_score
 
+    return rarity_score

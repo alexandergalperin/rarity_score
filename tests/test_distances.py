@@ -18,6 +18,50 @@ def cosine_distances():
     dist_matrix = 1 - np.dot(norm_data, norm_data.T)
     return dist_matrix
 
+@pytest.fixture
+def manhattan_distances():
+    # Generiere eine Beispiel-Distanzmatrix mit Manhattan-Distanz
+    data = np.random.randint(1, 10, size=(10, 2))
+    dist_matrix = np.abs(data[:, np.newaxis, :] - data[np.newaxis, :, :]).sum(axis=2)
+    return dist_matrix
+
+def test_rarity_scores_with_manhattan_mean_method(manhattan_distances):
+    n_neighbours = 5
+    rarity_scores = calculate_rarity_scores([manhattan_distances], n_neighbours)
+    assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
+    assert 0 <= min(rarity_scores) <= 1, "Rarity-Scores sollten zwischen 0 und 1 normiert sein"
+
+def test_rarity_scores_with_manhattan_flow_method(manhattan_distances):
+    n_next_hubs = 5
+    rarity_scores = calculate_rarity_scores_flow([manhattan_distances], n_next_hubs)
+    assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
+    assert 0 <= min(rarity_scores) <= 1, "Rarity-Scores sollten zwischen 0 und 1 normiert sein"
+
+def test_non_numeric_distances_mean_method():
+    distances = np.array([["a", "b"], ["c", "d"]])
+    n_neighbours = 2
+    with pytest.raises(TypeError, match="Distances must be numeric"):
+        calculate_rarity_scores([distances], n_neighbours)
+
+def test_non_numeric_distances_flow_method():
+    distances = np.array([["a", "b"], ["c", "d"]])
+    n_next_hubs = 2
+    with pytest.raises(TypeError, match="Distances must be numeric"):
+        calculate_rarity_scores_flow([distances], n_next_hubs)
+
+
+def test_zero_n_neighbours_mean_method():
+    distances = [[1, 2], [3, 4]]
+    n_neighbours = 0
+    rarity_scores = calculate_rarity_scores([distances], n_neighbours)
+    assert all(score == 0 for score in rarity_scores), "Rarity scores should be 0 for zero neighbors"
+
+def test_zero_n_next_hubs_flow_method():
+    distances = [[1, 2], [3, 4]]
+    n_next_hubs = 0
+    rarity_scores = calculate_rarity_scores_flow([distances], n_next_hubs)
+    assert all(score == 0 for score in rarity_scores), "Rarity scores should be 0 for zero next hubs"
+
 
 def test_empty_distances_mean_method():
     n_neighbours = 5

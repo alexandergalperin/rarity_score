@@ -1,11 +1,26 @@
 import numpy as np
 
 def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
+    """
+    Berechnet Rarity-Scores basierend auf Entfernungen, Fluss und der Anzahl der nächsten Hubs.
+
+    Args:
+        distances: Numpy-Array mit Distanzen.
+        n_next_hubs: Anzahl der nächsten Hubs zur Berücksichtigung.
+        decay: Parameter zur Steuerung des Flusses (Standardwert: 10).
+
+    Returns:
+        Numpy-Array mit Rarity-Scores.
+    """
+
     if not distances:
         raise ValueError("Cannot calculate rarity scores with empty distances")
-    
-    # Ensure distances is a numpy array for consistent processing
-    distances = np.array(distances)
+
+    if not isinstance(distances, np.ndarray):
+        raise TypeError("Distances must be numeric")
+
+    if n_next_hubs > len(distances):
+        raise ValueError("n_next_hubs cannot be greater than the number of distances")
 
     # Compute flows based on distance with a decay parameter
     def compute_flows(distance):
@@ -31,5 +46,5 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
         rarity_score_flow = [0 for _ in rarity_score_flow]
     else:
         rarity_score_flow = [(score - min_score) / (max_score - min_score) for score in rarity_score_flow]
-    
+
     return rarity_score_flow
