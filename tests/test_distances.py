@@ -27,13 +27,13 @@ def manhattan_distances():
 
 def test_rarity_scores_with_manhattan_mean_method(manhattan_distances):
     n_neighbours = 5
-    rarity_scores = calculate_rarity_scores([manhattan_distances], n_neighbours)
+    rarity_scores = calculate_rarity_scores([manhattan_distances()], n_neighbours)
     assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
     assert 0 <= min(rarity_scores) <= 1, "Rarity-Scores sollten zwischen 0 und 1 normiert sein"
 
 def test_rarity_scores_with_manhattan_flow_method(manhattan_distances):
     n_next_hubs = 5
-    rarity_scores = calculate_rarity_scores_flow([manhattan_distances], n_next_hubs)
+    rarity_scores = calculate_rarity_scores_flow([manhattan_distances()], n_next_hubs)
     assert len(rarity_scores) == 1, "Es sollte ein Array mit Rarity-Scores geben"
     assert 0 <= min(rarity_scores) <= 1, "Rarity-Scores sollten zwischen 0 und 1 normiert sein"
 
