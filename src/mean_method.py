@@ -17,8 +17,7 @@ def calculate_rarity_scores(distances, n_neighbours):
 
     distances = [np.array(distance_array) for distance_array in distances]
 
-    for distance_array in distances:
-        if np.issubdtype(distance_array, np.ndarray):
+    if not np.all(np.issubdtype(distances, np.number)):
             raise TypeError("Distances must be numeric NumPy arrays")
 
     if n_neighbours > len(distances[0]):
