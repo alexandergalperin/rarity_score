@@ -29,7 +29,7 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
         return np.exp(-decay * distance)
 
     # Sort the scores to get their sorted indices
-    sorted_ids = np.argsort(distances, axis=1)
+    sorted_ids = np.argsort(distances, axis=0)
 
     # Iterative flow search
     inward_flow_results = np.zeros(len(distances))
