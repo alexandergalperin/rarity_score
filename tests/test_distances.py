@@ -3,7 +3,7 @@ import numpy as np
 from mean_method import calculate_rarity_scores
 from flow_method import calculate_rarity_scores_flow
 
-@pytest.fixture
+@pytest.fixture 
 def euclidean_distances():
     # Generate a sample distance matrix using Euclidean distance with guaranteed variance
     data = np.array([[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9]])
