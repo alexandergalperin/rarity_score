@@ -11,8 +11,9 @@ def calculate_rarity_scores(distances, n_neighbours):
     Returns:
         List of rarity scores (NumPy arrays).
     """
+    distances = np.array(distances)
 
-    if not distances.all():
+    if not distances:
         raise ValueError("Cannot calculate rarity scores with empty distances")
 
     # Verify that each distance matrix in the list is a numeric NumPy array
