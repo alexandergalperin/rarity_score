@@ -19,6 +19,7 @@ def calculate_rarity_scores(distances, n_neighbours):
 
     for distance_array in distances:
         if not isinstance(distance_array, np.ndarray):
+            print("tessssssst")
             raise TypeError("Distances must be numeric NumPy arrays")
 
     if n_neighbours > len(distances[0]):
