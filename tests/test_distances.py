@@ -38,7 +38,6 @@ def test_non_numeric_distances_flow_method():
     with pytest.raises(TypeError, match="Distances must be numeric NumPy arrays"):
         calculate_rarity_scores_flow([distances], n_next_hubs)
 
-
 def test_empty_distances_mean_method():
     n_neighbours = 3
     with pytest.raises(ValueError, match="Cannot calculate rarity scores with empty distances"):
