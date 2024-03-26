@@ -19,6 +19,7 @@ def calculate_rarity_scores(distances, n_neighbours):
     for distance_matrix in distances:
         # Stelle sicher, dass distance_matrix 2D ist
         if distance_matrix.ndim != 2:
+            print(distance_matrix , 'fail')
             raise ValueError("Each distance matrix must be a 2D NumPy array")
 
         # Sortiere jede Zeile der Distanzmatrix und wähle die nächsten n_neighbours aus
