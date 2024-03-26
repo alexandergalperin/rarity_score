@@ -1,43 +1,37 @@
-import numpy as np 
+import numpy as np
 
 def calculate_rarity_scores(distances, n_neighbours):
     """
-    Calculates rarity scores based on distances and the number of neighbors.
+    Berechnet die Seltenheitswerte auf Basis der Distanzen und der Anzahl der Nachbarn.
 
     Args:
-        distances: List of distance matrices (NumPy arrays).
-        n_neighbours: Number of neighbors to consider.
+        distances: Eine Liste von Distanzmatrizen (NumPy Arrays).
+        n_neighbours: Anzahl der Nachbarn, die berücksichtigt werden sollen.
 
     Returns:
-        List of rarity scores (NumPy arrays).
+        Eine Liste von Seltenheitswerten (NumPy Arrays).
     """
 
     if len(distances) == 0:
         raise ValueError("Cannot calculate rarity scores with empty distances")
 
-    # Verify that each distance matrix in the list is a numeric NumPy array
-    for distance_array in distances:
-        for distance_number in distance_array:
-            if not isinstance(distance_number, (int,float, np.number)):
-                raise TypeError("Distances must be numeric NumPy arrays")
-
     rarity_scores = []
-    for distance_array in distances:
-        # Ensure we don't try to find more neighbours than we have data points
-        valid_n_neighbours = min(n_neighbours, len(distance_array) - 1)
+    for distance_matrix in distances:
+        # Stelle sicher, dass distance_matrix 2D ist
+        if distance_matrix.ndim != 2:
+            raise ValueError("Each distance matrix must be a 2D NumPy array")
 
-        # Sort distances for each point and select the closest n_neighbours
-        sorted_distances = np.sort(distance_array, axis=1)[:, 1:valid_n_neighbours+1]
+        # Sortiere jede Zeile der Distanzmatrix und wähle die nächsten n_neighbours aus
+        sorted_distances = np.sort(distance_matrix, axis=1)[:, 1:n_neighbours+1]
 
-        # Calculate the average distance to the n nearest neighbours for each point
+        # Berechne die durchschnittliche Distanz zu den n nächsten Nachbarn für jeden Punkt
         avg_distances = np.mean(sorted_distances, axis=1)
 
-        # Normalize the rarity scores to be between 0 and 1
+        # Normalisiere die Seltenheitswerte, um sie zwischen 0 und 1 zu erhalten
         min_score = np.min(avg_distances)
         max_score = np.max(avg_distances)
-
         if max_score == min_score:
-            rarity_score = np.zeros(len(avg_distances))  # All points are equally rare/common
+            rarity_score = np.zeros_like(avg_distances)  # Alle Punkte sind gleich selten/häufig
         else:
             rarity_score = (avg_distances - min_score) / (max_score - min_score)
 

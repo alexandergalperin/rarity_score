@@ -50,3 +50,4 @@ def calculate_rarity_scores_flow(distances, n_next_hubs, decay=10):
         rarity_score_flow = [(score - min_score) / (max_score - min_score) for score in rarity_score_flow]
 
     return rarity_score_flow
+
