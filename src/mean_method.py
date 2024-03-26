@@ -13,7 +13,7 @@ def calculate_rarity_scores(distance_array, n_neighbours):
     """
 
     if len(distance_array) == 0:
-        raise ValueError("Cannot calculate rarity scores with an empty distance matrix")
+        raise ValueError("Cannot calculate rarity scores with empty distances")
 
 
     if not isinstance(distance_array, np.ndarray) or distance_array.ndim != 2:
