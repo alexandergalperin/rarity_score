@@ -15,7 +15,7 @@ pip install numpy
 
 ## Verwendung
 
-Das Projekt umfasst zwei Hauptskripte:
+Das Projekt umfasst zwei Hauptskripte (in src):
 
 1. **Distanzbasierte Seltenheitsbewertung**
 2. **Flussbasierte Seltenheitsbewertung**
