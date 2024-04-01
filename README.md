@@ -1,7 +1,7 @@
 # Rarity Score - Bewertung der Seltenheit von Datenpunkten in Hochdimensionalen Datensätzen
 
 ## Beschreibung
-Dieses Projekt entwickelt neue Methoden zur Bewertung der Seltenheit von Datenpunkten in hochdimensionalen Datensätzen.
+Diese Arbeit entwickelt neue Methoden zur Bewertung der Seltenheit von Datenpunkten in hochdimensionalen Datensätzen.
 ## Hintergrund
 In der heutigen Zeit der massiven Datenmengen ist die Identifizierung seltener und bedeutungsvoller Informationen in hochdimensionalen Datensätzen eine Schlüsselaufgabe. Der Kern dieses Projekts liegt in der Entwicklung neuer Methoden zur Seltenheitsbewertung. Diese Verfahren sind entscheidend, um verborgene Muster und Trends in umfangreichen Datenmengen zu entdecken, die sonst möglicherweise übersehen würden. Dieses Projekt konzentriert sich darauf, innovative Lösungen zu entwickeln, um diese spezifische Herausforderung zu überwinden und effektiv die Seltenheit von Datenpunkten in solchen komplexen Datensätzen zu bewerten.
 
@@ -38,10 +38,6 @@ Für dieses Projekt wurden verschiedene Datensätze verwendet, um die Bewertung 
 
 4. **Molekulare Daten:** Diese Daten wurden von Prof. Dr. Florian Huber bereitgestellt und repräsentieren eine umfangreiche Sammlung chemischer Verbindungen, die aus natürlichen Quellen gewonnen wurden.
 
-
-## Lizenz
-
-Dieses Projekt ist unter der XYZ-Lizenz lizenziert - siehe die `LICENSE.md`-Datei für Details.
 
 ## Kontakt
 
